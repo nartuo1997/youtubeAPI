@@ -1,3 +1,8 @@
+# YouTube API
+
+This small project is made to learn more about react low level structure. It can fetch youtube API to get youtube videos.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
