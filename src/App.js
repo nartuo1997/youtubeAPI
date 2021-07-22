@@ -1,25 +1,66 @@
-import logo from './logo.svg';
+
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+// import API
+// import axios from './YoutubeAPI/YoutubeAPI';
+import YoutubeAPI from './YoutubeAPI/YoutubeAPI';
+
+//import component
+import SearchBar from './Components/SearchBar';
+import VideoList from './Components/VideoList';
+import VideoDetail from './Components/VideoDetail';
+
+class App extends Component {
+  state = {
+    videos: [],
+    selectedVideo: null
+  }
+
+  onTermSubmit = async (term) => {
+    const response = await YoutubeAPI.get('/search', {
+      params: {
+        q: term
+      }
+    });
+
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0]
+    })
+
+  };
+
+  onVideoSelect = (video) => {
+    this.setState({ selectedVideo: video })
+  }
+
+  componentDidMount() {
+    this.onTermSubmit('stephan graham')
+  }
+
+  render() {
+    return (
+      <div className="ui container">
+        <SearchBar onFormSubmit={this.onTermSubmit} />
+        <div className="ui grid">
+          <div className="ui row">
+            <div className="eleven wide column">
+              <VideoDetail VideoDetail={this.state.selectedVideo} />
+            </div>
+            <div className="five wide column">
+              <VideoList
+                videos={this.state.videos}
+                onVideoSelect={this.onVideoSelect}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 }
 
 export default App;
