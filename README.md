@@ -2,6 +2,8 @@
 
 **This small project is made to learn more about react low level structure. It can fetch youtube API to get youtube videos.**
 
+> Before you run **npm start**, use **npm install** to update latest dependencies.
+
 
 # Getting Started with Create React App
 
