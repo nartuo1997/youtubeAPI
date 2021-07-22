@@ -1,6 +1,6 @@
 # YouTube API
 
-This small project is made to learn more about react low level structure. It can fetch youtube API to get youtube videos.
+**This small project is made to learn more about react low level structure. It can fetch youtube API to get youtube videos.**
 
 
 # Getting Started with Create React App
